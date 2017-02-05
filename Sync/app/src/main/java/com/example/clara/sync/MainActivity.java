@@ -1,9 +1,8 @@
 package com.example.clara.sync;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +13,24 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.clara.sync.Person.Profile;
+import com.google.gson.Gson;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView namePerson;
-    TextView fbPerson;
-    TextView instaPerson;
-    TextView twitPerson;
+    public static TextView name;
+    public static TextView facebook;
+    public static TextView instagram;
+    public static TextView twitter;
 
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -41,18 +47,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SYNC");
 
-        namePerson = (TextView) findViewById(R.id.name);
-        fbPerson = (TextView) findViewById(R.id.fb);
-        instaPerson = (TextView) findViewById(R.id.insta);
-        twitPerson = (TextView) findViewById(R.id.twit);
+        name = (TextView) findViewById(R.id.name);
+        facebook = (TextView) findViewById(R.id.fb);
+        instagram = (TextView) findViewById(R.id.insta);
+        twitter = (TextView) findViewById(R.id.twit);
 
         Button updateButton = (Button) findViewById(R.id.update);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                namePerson.setText("It works");
-
+                try {
+                    Profile.savePerson(view);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-                namePerson.setText("It works");
+                name.setText("It works");
             }
         });
     }
