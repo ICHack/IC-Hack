@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private String mActivityTitle;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mDrawerList = (ListView)findViewById(R.id.navList);
+        mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout =
-                (DrawerLayout)findViewById(R.id.drawer_layout);
+                (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
 
         addDrawerItems();
@@ -70,36 +69,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-  */
-
-
-    //draweeer
+    //drawer
 
     private void addDrawerItems() {
-        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
+        String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
                 osArray);
         mDrawerList.setAdapter(mAdapter);
@@ -121,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.bringToFront();
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle("Menu");
-              invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely closed state. */
